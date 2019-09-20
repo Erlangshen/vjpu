@@ -8,15 +8,21 @@
       <br/>
       <van-button round loading type="default" size="large" loading-text="正在请求数据" color="#7232dd" plain />
     </p>
+    <mp-date
+      @onConfirm="objk"
+      :unit="false"
+      key-name="zhuangbikey"
+    />
   </div>
 </template>
 
 <script>
     import {mapGetters, mapMutations} from 'vuex'
-
+    import mpDate from '../index/mpDate'
     // import {mapState} from 'vuex'
 
     export default {
+      components: {mpDate},
       computed: {
         ...mapGetters(['getCount'])
 
@@ -30,7 +36,10 @@
         // })
       },
       methods: {
-        ...mapMutations(['increment', 'decrement'])
+        ...mapMutations(['increment', 'decrement']),
+        objk ({value, keyName, time}) {
+          console.log(value + '\n' + keyName + '\n' + time)
+        }
         // increment () {
         //   return this.zb.commit('increment')
         // },

@@ -1,0 +1,230 @@
+//边框
+.border(all,@b_w:1px,@color:#cdcdcd,@style:solid){
+  border:@b_w @style @color;
+}
+
+//上边框
+.border(top,@b_w:1px,@color:#cdcdcd,@style:solid){
+  border-top:@b_w @style @color;
+}
+
+//右边框
+.border(right,@b_w:1px,@color:#cdcdcd,@style:solid){
+  border-right: @b_w @style @color;
+}
+
+//下边框
+.border(bottom,@b_w:1px,@color:#cdcdcd,@style:solid){
+  border-bottom:@b_w @style @color;
+}
+
+//左边框
+.border(left,@b_w:1px,@style:solid,@color:#cdcdcd){
+  border-left: @b_w @style @color;
+}
+
+//定位->相对定位
+.position(r){
+  position: relative;
+}
+//定位->绝对定位
+.position(a){
+  position: absolute;
+}
+//定位->固定定位
+.position(f){
+  position: fixed;
+}
+
+//字体
+.font(@size:14px,@lh:30px,@style:normal,@family:"微软雅黑"){
+  font:@style @size/@lh @family;
+}
+
+//内边距
+.padd(all,@distance:10px){
+  padding:@distance;
+}
+
+.padd_top_left(@top_distance:5px,@left_distance:10px){
+  padding:@top_distance @left_distance;
+}
+//上内边距
+.padd(top,@distance:10px){
+  padding-top: @distance;
+}
+//右内边距
+.padd(right,@distance:10px){
+  padding-right: 10px;
+}
+//下内边距
+.padd(bottom,@distance:10px){
+  padding-bottom: @distance;
+}
+//左内边距
+.padd(left,@distance:10px){
+  padding-left: @distance;
+}
+
+//外边距
+.margin(all,@distance:10px){
+  margin:@distance;
+}
+
+.margin_top_left(@top_distance:5px,@left_distance:10px){
+  margin:@top_distance @left_distance;
+}
+//上外边距
+.margin(top,@distance:10px){
+  margin-top:@distance;
+}
+//右外边距
+.margin(right,@distance:10px){
+  margin-right:@distance;
+}
+//下外边距
+.margin(bottom,@distance:10px){
+  margin-bottom:@distance;
+}
+//左外边距
+.margin(left,@distance:10px){
+  margin-left:@distance;
+}
+
+//圆角
+.border-radius(@raiuds:5px){
+  border-radius:@raiuds;
+}
+.border-radius(@tl:0,@tr:0,@bl:0,@br:0){
+  border-top-left-radius: @tl;
+  border-top-right-radius: @tr;
+  border-bottom-left-radius: @bl;
+  border-bottom-right-radius: @br;
+}
+
+
+.flex-row(@justify-content:center,@align-items:center){
+  display: flex;
+  flex-direction:row;
+  justify-content: @justify-content;
+  align-items: @align-items;
+
+}
+.flex-column(@justify-content:center,@align-items:center){
+  display: flex;
+  flex-direction:column;
+  justify-content: @justify-content;
+  align-items: @align-items;
+}
+
+//三角提示
+.tip-triangle(@color,@dis:20px){
+  &:before {
+    .position(a);
+    content:'';
+    bottom: 100%;
+    margin-left: @dis;
+    border: solid 10px rgba(255, 225, 255, 0);
+    border-bottom-color: @color;
+    //
+  }
+}
+// 阴影
+.mpbox-shadow(@color:#eaf2fc){
+  border-radius: 4px;
+  //box-shadow:  0px 0px 6px 4px @color;
+  box-shadow:-6px 0 20px -1px #eaf2fc,6px 0 20px -1px #eaf2fc,0 6px 20px -1px #eaf2fc;
+}
+
+//定义块 阴影效果
+.mp-block(){
+  width: 94%;
+  margin: 10px auto;
+  .mpbox-shadow();
+}
+
+
+
+/*** 四边框*/
+.border(@color: #dbdbdb; @radius: 0) {
+  &:after {
+    content: " ";
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid @color;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    border-radius: @radius;
+    z-index: 2;
+  }}
+
+
+//通用
+.border-base(@color:#000, @left:0){
+  content: " ";
+  .position(a);
+  left: @left;
+  z-index: 2;
+  color: @color;
+}
+// 上边框 1像素
+.border-top(@color: #dbdbdb; @left: 0) {
+  .position(r);
+  &:before {
+    .border-base(@color,@left);
+    top: 0;
+    right: 0;
+    color: @color;
+    height: 1px;
+    border-top: 1px solid @color;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+  }}
+// 下边框1像素
+.border-bottom(@color: #dbdbdb; @left: 0){
+  .position(r);
+  &:after {
+    .border-base(@color,@left);
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid @color;
+    transform-origin: 0 100%;
+    transform: scaleY(0.5);
+  }
+}
+// 左边框1像素
+.border-left(@color: #dbdbdb; @top: 0; @left: 0) {
+  .position(r);
+  &:before {
+    .border-base(@color,@left);
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-left: 1px solid @color;
+    transform-origin: 0 0;
+    transform: scaleX(0.5);
+  }}
+// 右边框1像素
+.border-right(@color: #dbdbdb; @top: 0; @left: 0){
+  .position(r);
+  &:after {
+    .border-base(@color,@left);
+    right: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-right: 1px solid @color;
+    transform-origin: 0 0;
+    transform: scaleX(0.5);
+  }}
+
+
+.line-through{
+  text-decoration:line-through;
+}
+

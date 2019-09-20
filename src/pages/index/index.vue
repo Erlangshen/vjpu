@@ -33,12 +33,20 @@
 
     <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
 
-    <div class="all">
-      <div class="left">
-      </div>
-      <div class="right">
-      </div>
-    </div>
+    <van-search
+      :value="val"
+      placeholder="please input search words"
+      show-action
+      @cancel="onCancel"
+      @search="onSearch"
+      label="关键字"
+      shape="round"
+    >
+<!--      <view-->
+<!--        slot="action"-->
+<!--        @tap="onSearch2"-->
+<!--      >search</view>-->
+    </van-search>
   </div>
 </template>
 
@@ -58,7 +66,8 @@
         checked: false,
         list: ['a', 'b', 'c'],
         values: [],
-        result: []
+        result: [],
+        val: ''
       }
     },
 
@@ -93,6 +102,28 @@
         } else {
           this.values.splice(index, 1)
         }
+      },
+      onCancel (e) {
+        console.log(e.mp.detail)
+      },
+      onSearch (e) {
+        console.log(e.mp.detail)
+        this.val = e.mp.detail
+      },
+      onChangeVal (e) {
+        this.val = e.mp.detail
+        console.log(this.val)
+      },
+      onSearch2 () {
+        wx.showToast({
+          title: this.val, // 提示的内容,
+          icon: 'success', // 图标,
+          duration: 2000, // 延迟时间,
+          mask: true, // 显示透明蒙层，防止触摸穿透,
+          success: res => {
+            console.log(res)
+          }
+        })
       }
     },
 
