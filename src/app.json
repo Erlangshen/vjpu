@@ -51,6 +51,8 @@
     "van-checkbox": "/path/vant-weapp/checkbox/index",
     "van-checkbox-group": "/path/vant-weapp/checkbox-group/index",
     "van-datetime-picker": "/path/vant-weapp/datetime-picker/index",
-    "van-search": "/path/vant-weapp/search/index"
+    "van-search": "/path/vant-weapp/search/index",
+    "van-tab": "/path/vant-weapp/tab/index",
+    "van-tabs": "/path/vant-weapp/tabs/index"
   }
 }
